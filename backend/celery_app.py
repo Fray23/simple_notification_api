@@ -9,10 +9,10 @@ app = Celery()
 app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 
-# app.conf.beat_schedule = {
-#     'send_notifications': {
-#         'task': 'notifications.tasks.send_notifications',
-#         'schedule': 5.0,
-#     },
-# }
+app.conf.beat_schedule = {
+    'send_notifications': {
+        'task': 'notifications.tasks.send_notifications',
+        'schedule': 2.0,
+    },
+}
 app.conf.timezone = 'UTC'
